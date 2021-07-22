@@ -6,26 +6,27 @@ import "codemirror/mode/xml/xml"
 import "codemirror/mode/javascript/javascript"
 import "codemirror/mode/css/css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExpandAlt } from '@fortawesome/free-solid-svg-icons'
+import { faExpandAlt, faCompressAlt } from '@fortawesome/free-solid-svg-icons'
 import "../index.css"
 
 const Editor = (props) => {
+    const [open, setOpen] = useState(true)
     const { launguage, label, value, onChange } = props
 
     const handleChange = (editor, data, value) => {
         onChange(value)
     }
 
-    const handleClick = () => {
-        console.log("clicked")
-    }
-
     return (
-        <div className="editor-container">
+        <div className={`editor-container ${open ? '' : 'collapsed'}`}>
             <div className="editor-title">
                 {label}
-                <button onClick={() => handleClick()} style={{ border: 'none' }}>
-                    <FontAwesomeIcon icon={faExpandAlt} />
+                <button
+                    type="button"
+                    onClick={() => setOpen(!open)}
+                    className="expand-collapse-btn"
+                >
+                    <FontAwesomeIcon icon={open ? faCompressAlt : faExpandAlt} />
                 </button>
             </div>
             <CodeMirror
