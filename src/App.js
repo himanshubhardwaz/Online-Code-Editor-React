@@ -6,7 +6,7 @@ import useLocalStorage from "./hooks/useLocalStorage"
 function App() {
   const [html, setHtml] = useLocalStorage('html', '')
   const [css, setCss] = useLocalStorage('css', '')
-  const [javascript, setJavaScript] = useLocalStorage('javascript', '')
+  const [javascript, setJavascript] = useLocalStorage('javascript', '')
   const [srcDoc, setSrcDoc] = useState('')
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function App() {
         </html>
       `)
     }, 250)
-
+    // console.log(srcDoc)
     return () => clearTimeout(timeout)
   }, [html, css, javascript])
 
@@ -42,14 +42,14 @@ function App() {
           launguage="javascript"
           label="JavaScript"
           value={javascript}
-          onChange={setJavaScript}
+          onChange={setJavascript}
         />
       </div>
       <div className="bottom-pane">
         <iframe
           srcDoc={srcDoc}
           title="output"
-          sandbox="allow scripts"
+          sandbox="allow-scripts"
           frameBorder="0"
           width="100%"
           height="100%"
